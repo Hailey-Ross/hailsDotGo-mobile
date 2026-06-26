@@ -14,7 +14,7 @@ object AppraisalBarDetector {
     //   - A continuous orange band means badge interior is filled (3 stars).
     // This distinguishes 1-star (46 hits but with a gap) from 3-star (34 hits, no gap).
     fun detect(bitmap: Bitmap, appraisalVisible: Boolean = false): Pair<Int?, Boolean> {
-        if (!appraisalVisible) return Pair(null, false)
+        if (!appraisalVisible) return Pair(-1, false)
 
         val w = bitmap.width
         val h = bitmap.height
@@ -72,7 +72,7 @@ object AppraisalBarDetector {
             !hasGap && total >= 10 -> 3
             hasGap -> if (innerTotal >= 10) 2 else 1
             total >= 3             -> 1
-            else                   -> 0
+            else                   -> -1
         }
 
         val isHundo = stars == 3 && rainbow >= 3

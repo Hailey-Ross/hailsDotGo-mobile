@@ -180,7 +180,7 @@ fun IVResultScreen(
             color = MaterialTheme.colorScheme.onSurfaceVariant)
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             FilterChip(
-                selected = form.appraisalBars == null,
+                selected = form.appraisalBars == null || (form.appraisalBars ?: 0) < 0,
                 onClick  = { vm.updateForm { copy(appraisalBars = null) } },
                 label    = { Text("Skip") },
             )
