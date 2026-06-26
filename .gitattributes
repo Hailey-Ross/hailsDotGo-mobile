@@ -1,0 +1,19 @@
+# Normalize line endings to LF in the repository on all platforms.
+* text=auto eol=lf
+
+# Gradle wrapper shell script must be LF or it will fail on Linux and macOS.
+android/gradlew text eol=lf
+
+# Binary files: no line ending conversion.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.jar binary
+*.jks binary
+*.keystore binary
+*.apk binary
+*.aab binary
+*.so binary

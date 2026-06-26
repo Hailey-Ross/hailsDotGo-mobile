@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HailsDotGo</string>
+    <string name="scanner_bubble_desc">HailsDotGo scanner</string>
+    <string name="permission_overlay_rationale">HailsDotGo needs "Display over other apps" permission to show the scan bubble while you\'re in Pokémon GO.</string>
+    <string name="permission_capture_rationale">HailsDotGo needs screen recording permission to scan your Pokémon\'s stats. Frames are never stored to disk.</string>
+</resources>

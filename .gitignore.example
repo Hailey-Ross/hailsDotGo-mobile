@@ -1,0 +1,58 @@
+# Copy this file to .gitignore after cloning.
+# The .gitignore itself is not tracked in this repository.
+# This file documents all patterns that should be excluded from git.
+
+# Claude Code internal project files
+.claude/
+
+# Android Gradle build output
+android/app/build/
+android/build/
+
+# Gradle daemon caches
+android/.gradle/
+
+# Kotlin incremental compilation cache
+android/.kotlin/
+
+# Android Studio IDE configuration
+.idea/
+**/.idea/
+*.iml
+*.iws
+*.ipr
+
+# Machine-specific Android SDK path
+# See android/local.properties.example
+android/local.properties
+
+# Firebase configuration (contains real API keys when populated)
+# See android/app/google-services.json.example
+android/app/google-services.json
+
+# App signing keystores
+*.jks
+*.keystore
+*.p12
+
+# APNs auth keys
+*.p8
+
+# Environment variable files
+.env
+.env.*
+*.env
+
+# Debug screen captures written during OCR development
+android/capture_*.png
+capture_*.png
+
+# Log files
+*.log
+
+# macOS filesystem metadata
+.DS_Store
+.AppleDouble
+
+# Windows thumbnail cache
+Thumbs.db

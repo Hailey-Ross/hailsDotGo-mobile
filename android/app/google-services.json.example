@@ -1,0 +1,31 @@
+{
+  "_README": "Copy this file to google-services.json and replace all placeholder values with real credentials from the Firebase Console. Package name must be live.hails.hailsdotgo. See docs/Firebase-Setup.md for instructions.",
+  "project_info": {
+    "project_number": "000000000000",
+    "firebase_url": "https://YOUR_PROJECT_ID.firebaseio.com",
+    "project_id": "YOUR_PROJECT_ID",
+    "storage_bucket": "YOUR_PROJECT_ID.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+        "android_client_info": {
+          "package_name": "live.hails.hailsdotgo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "YOUR_API_KEY_FROM_FIREBASE_CONSOLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

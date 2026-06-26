@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deep Indigo — dark mode -->
+    <color name="background_dark">#FF12002F</color>
+    <color name="surface_dark">#FF1E0C4B</color>
+    <color name="surface_variant_dark">#FF2D1A5E</color>
+    <color name="primary_dark">#FF7C4DFF</color>
+    <color name="secondary_dark">#FF00E5FF</color>
+
+    <!-- Deep Indigo — light mode -->
+    <color name="background_light">#FFF3EEFF</color>
+    <color name="surface_light">#FFFFFFFF</color>
+    <color name="surface_variant_light">#FFEDE7FF</color>
+    <color name="primary_light">#FF5B0EE8</color>
+    <color name="secondary_light">#FF006E7C</color>
+</resources>
