@@ -33,7 +33,7 @@ An Android companion app for Pokemon GO. Scans Pokemon stats using on-device OCR
 | Auth token storage | EncryptedSharedPreferences (AES-256-GCM via Android Keystore) |
 | Push notifications | Firebase Cloud Messaging (FCM) |
 
-See [docs/Architecture.md](docs/Architecture.md) for a package-by-package breakdown and full data flow.
+See [Architecture](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Architecture) for a package-by-package breakdown and full data flow.
 
 ---
 
@@ -77,7 +77,7 @@ Edit `android/local.properties` and set `sdk.dir` to your local Android SDK path
 cp android/app/google-services.json.example android/app/google-services.json
 ```
 
-Replace the placeholder values with your real Firebase project credentials. See [docs/Firebase-Setup.md](docs/Firebase-Setup.md) for a step-by-step walkthrough.
+Replace the placeholder values with your real Firebase project credentials. See [Firebase Setup](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Firebase-Setup) for a step-by-step walkthrough.
 
 Once your real `google-services.json` is in place, un-comment the `google-services` plugin in both Gradle files.
 
@@ -97,7 +97,7 @@ Open the `android/` subdirectory in Android Studio (not the repository root). Sy
 
 A physical device is recommended for the overlay and MediaProjection features.
 
-See [docs/Build-Guide.md](docs/Build-Guide.md) for a complete walkthrough including release builds and ProGuard configuration.
+See [Build Guide](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Build-Guide) for a complete walkthrough including release builds and ProGuard configuration.
 
 ---
 
@@ -115,14 +115,14 @@ See [docs/Build-Guide.md](docs/Build-Guide.md) for a complete walkthrough includ
 
 ## Documentation
 
-| File | Contents |
+| Page | Contents |
 |---|---|
-| [docs/Architecture.md](docs/Architecture.md) | Package structure and data flow |
-| [docs/OCR-System.md](docs/OCR-System.md) | Screen capture pipeline, ML Kit OCR, and pixel detectors |
-| [docs/API-Reference.md](docs/API-Reference.md) | All backend endpoints with request and response shapes |
-| [docs/Firebase-Setup.md](docs/Firebase-Setup.md) | Firebase project setup and FCM configuration |
-| [docs/Build-Guide.md](docs/Build-Guide.md) | Debug and release build instructions |
-| [docs/Push-Notifications.md](docs/Push-Notifications.md) | FCM implementation notes and stub completion guide |
+| [Architecture](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Architecture) | Package structure and data flow |
+| [OCR System](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/OCR-System) | Screen capture pipeline, ML Kit OCR, and pixel detectors |
+| [API Reference](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/API-Reference) | All backend endpoints with request and response shapes |
+| [Firebase Setup](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Firebase-Setup) | Firebase project setup and FCM configuration |
+| [Build Guide](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Build-Guide) | Debug and release build instructions |
+| [Push Notifications](https://github.com/Hailey-Ross/hailsDotGo-mobile/wiki/Push-Notifications) | FCM implementation notes and stub completion guide |
 
 ---
 
