@@ -14,7 +14,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -45,6 +50,7 @@ class OverlayService : Service() {
     private var ivCardView    : View?          = null
     private var ivOwner       : OverlayLifecycleOwner? = null
 
+    private var closeButtonView: View?                      = null
     private var bubbleParams  : WindowManager.LayoutParams? = null
     private var bubbleSizePx  : Int = 0
 
@@ -151,7 +157,8 @@ class OverlayService : Service() {
         ivOwner = owner
         owner.start()
 
-        val metrics = resources.displayMetrics
+        val metrics   = resources.displayMetrics
+        val density   = metrics.density
         val cardHeight = (metrics.heightPixels * 0.45f).roundToInt()
 
         val composeView = ComposeView(this).apply {
@@ -169,12 +176,53 @@ class OverlayService : Service() {
                             modifier = Modifier.fillMaxSize(),
                             shape    = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
                         ) {
-                            IVResultScreen(onDismiss = { dismissIVCard(clearAccumulated = true) })
+                            IVResultScreen(onDismiss = null)
                         }
                     }
                 }
             }
         }
+
+        // Floating X button pinned to physical screen top-right
+        val btnSizePx = (52 * density).roundToInt()
+        val closeView = ComposeView(this).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindow)
+            setViewTreeLifecycleOwner(owner)
+            setViewTreeViewModelStoreOwner(owner)
+            setViewTreeSavedStateRegistryOwner(owner)
+            setContent {
+                CompositionLocalProvider(
+                    LocalLifecycleOwner provides owner,
+                    LocalViewModelStoreOwner provides owner,
+                ) {
+                    HailsDotGoTheme(darkTheme = true) {
+                        IconButton(
+                            onClick  = { dismissIVCard(clearAccumulated = true) },
+                            modifier = Modifier.fillMaxSize(),
+                        ) {
+                            Icon(
+                                Icons.Default.Close,
+                                contentDescription = "Close",
+                                tint     = androidx.compose.ui.graphics.Color.White,
+                                modifier = Modifier.size(28.dp),
+                            )
+                        }
+                    }
+                }
+            }
+        }
+        val closeParams = WindowManager.LayoutParams(
+            btnSizePx, btnSizePx,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            PixelFormat.TRANSLUCENT,
+        ).apply {
+            gravity = Gravity.TOP or Gravity.END
+            x = 0
+            y = 0
+        }
+        windowManager?.addView(closeView, closeParams)
+        closeButtonView = closeView
 
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.MATCH_PARENT,
@@ -192,6 +240,8 @@ class OverlayService : Service() {
     }
 
     private fun dismissIVCard(clearAccumulated: Boolean = false) {
+        closeButtonView?.let { safely { windowManager?.removeView(it) } }
+        closeButtonView = null
         ivCardView?.let { safely { windowManager?.removeView(it) } }
         ivCardView = null
         ivOwner?.stop()

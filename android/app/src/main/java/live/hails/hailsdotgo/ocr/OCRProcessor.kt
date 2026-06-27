@@ -38,6 +38,9 @@ object OCRProcessor {
         "attack", "defense", "hp", "cp", "candy", "stardust", "mega",
         "energy", "lucky", "weather", "boosted", "purified", "shadow",
         "height", "weight", "evolve", "power",
+        "shortest", "shorter", "short", "tall", "taller", "tallest",
+        "lightest", "lighter", "light", "heavy", "heavier", "heaviest",
+        "average",
     )
 
     private val VALID_DUST = setOf(
@@ -197,17 +200,17 @@ object OCRProcessor {
             }
         Log.d(TAG, "Card zone lines: ${cardLines.map { "'${it.text}' h=${it.boundingBox?.height()}" }}")
         val largest = cardLines
-            .filter { line ->
-                val t     = line.text.trim()
-                val words = t.lowercase().split(Regex("""\s+"""))
-                t.length in 2..20 &&
-                t.all { it.isLetter() || it.isWhitespace() || it == '-' || it == '\'' } &&
-                t.any { it.isLetter() } &&
-                t.lowercase() !in NOT_A_NAME &&
-                words.none { it in NOT_A_NAME }
+            .mapNotNull { line ->
+                val clean = line.text.replace(Regex("[^\\p{L}\\s'\\-]"), "").trim()
+                val words = clean.lowercase().split(Regex("""\s+"""))
+                if (clean.length in 2..20 &&
+                    clean.any { it.isLetter() } &&
+                    clean.lowercase() !in NOT_A_NAME &&
+                    words.none { it in NOT_A_NAME }
+                ) Pair(line, clean) else null
             }
-            .maxByOrNull { it.boundingBox?.height() ?: 0 }
-            ?.text?.trim()
+            .maxByOrNull { (line, _) -> line.boundingBox?.height() ?: 0 }
+            ?.second
         Log.d(TAG, "Strategy 3 (card zone): result='$largest'")
         if (!largest.isNullOrBlank()) return Pair(largest, "card")
 
