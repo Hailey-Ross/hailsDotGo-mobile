@@ -2,7 +2,7 @@
 
 An Android companion app for Pokemon GO. Scans Pokemon stats using on-device OCR and coordinates raid lobbies through a shared backend.
 
-**Version:** 0.0.1-<img src="alpha.svg" height="14" style="vertical-align:middle"/>  
+**Version:** 0.0.1-<img src="alpha.svg" height="18" style="vertical-align:middle"/>  
 **Platform:** Android only, minSdk 26 (Android 8.0 Oreo)
 
 ---
